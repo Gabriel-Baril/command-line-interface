@@ -1,0 +1,26 @@
+
+assignment_op : =
+<param_name> = <param_name>(.<param_attr_name_1>.<param_attr_name_2> ... .<param_attr_name_n>) -> Represent a parameter expression (Ex: pos.x, x1, obj.pos.x)
+<param_value> = Represent a litteral value (Ex: 2, "abc", (sqrt(cos(72))^2) 
+
+<param_name>=<param_value> (if <param_name> or <param_value> contains whitespace character you need to surround them with "")
+
+<param_name>=[<param_attr_name_1>=<param_value_1>, <param_attr_name_2>=<param_value_2>, ... , <param_attr_name_n>=<param_value_n>] (if <param_name> is a aggregate parameter) or
+<param_name>=[<param_attr_name_1>=<param_value_1> <param_attr_name_2>=<param_value_2> ... <param_attr_name_n>=<param_value_n>] (if <param_name> is a aggregate parameter) or
+<param_name>[<param_attr_name_1>=<param_value_1>, <param_attr_name_2>=<param_value_2>, ... , <param_attr_name_n>=<param_value_n>] (if <param_name> is a aggregate parameter) or
+<param_name>[<param_attr_name_1>=<param_value_1> <param_attr_name_2>=<param_value_2> ... <param_attr_name_n>=<param_value_n>] (if <param_name> is a aggregate parameter)
+
+Examples:
+
+The ":" symbol is experimental and means  that the word at the left is a prefix and the word at the right is an enum value of the prefix
+enum spawn {cube, sphere, plane} 
+
+hdr spawn:cube pos.x=12 pos.y=3 pos.z=sqrt(2) name="basic cube" =>
+hdr spawn:cube pos=[x=12, y=3, z=sqrt(2)] name="basic cube" =>
+hdr spawn:cube pos=[x=12 y=3 z=sqrt(2)] name="basic cube" =>
+hdr spawn:cube pos[x=12 y=3 z=sqrt(2)] name="basic cube" =>
+
+dynamic:true, dynamic:false
+spawn:cube, spawn:sphere, spawn:plane
+
+

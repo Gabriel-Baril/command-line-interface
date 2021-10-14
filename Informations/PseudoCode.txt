@@ -1,0 +1,33 @@
+## COMMAND NORMALIZATION ALGORITHM
+
+def normalize(command):
+	buffer = []
+	while(index < command.size())
+		if(command[index] is not null character):
+			buffer.push(command[index])
+			if(command[index] == {'=', ',', '[', ']'})
+				index = find_next_non_null(command, index + 1)
+		else:
+			index = find_next_non_null(command, index)
+			if(command[index] != {'=', ',', '[', ']'}):
+				buffer.push(' ')
+
+## EXTRACT VALUE FROM COMMAND ALGORITHM
+
+def parse_command(rawCommand):
+	normalizedRawCommand = normalize(rawCommand) # Normalize the whitespace characters in the command 
+	commandPartitions = partition(normalizedRawCommand) # Partition each assignment (and command namespace and command name)
+	commandKeyVal = map()
+	commandKeyVal.insert('root.command_namespace', commandPartitions[0])
+	commandKeyVal.insert('root.command_name', commandPartitions[1])
+	parse_partition(partition, 'root', commandKeyVal)
+
+def parse_partition(partition, source, parentMap):
+	paramName = get_param_name(partition);
+	paramValue = get_param_value(partition)
+	if(is_aggregate(paramValue)):
+		attributes = partition(paramValue)
+		for(attribute in attributes):
+			parse_partition(attribute, source + '.' + paramName, parentMap)
+	else
+		parentMap.insert(paramName, paramValue)
